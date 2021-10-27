@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Skystric 2.1</title>
+  {% load static %}
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="{% static "materialize.css" %}">
+  <link rel="stylesheet" href="{% static "style.css" %}">
+</head>
+<body>
+  <nav class="brand-blue1 top-nav" role="navigation">
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="/logout/">Log Out</a></li>
+        <li class="divider"></li>
+        <li><a href="/account/">Account</a></li>
+        <li class="divider"></li>
+        <li><a href="/contacts/">Contact Us</a></li>
+    </ul>
+    <div class="nav-wrapper container">
+      {% load static %}
+      <a id="logo-container" href="/" class="brand-logo"><img src="{% static "skystric-logo.png" %}" alt="Skystric Logo"></a>
+      <ul class="right hide-on-med-and-down" id="nav-links">
+        <li><a href="/constructor/">Drone Configurator</a></li>
+        <li><a href="/inventory/">Inventory</a></li>
+        <li><a href="/design/">Designing a Drone</a></li>
+        <li><a href="/contactus/">Contact Us</a></li>
+        <li>
+          {% if user.is_authenticated %}
+          <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Profile - {{user.username}}<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+          {% else %}
+          <a href="/login/"> Log In </a>
+          {% endif %}
+        </li>
+        <li>
+          <a href="/cart/" title="Cart"><i class="large material-icons">add_shopping_cart</i></a>
+        </li>
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li>
+          <h5> Skystric Menu </h5>
+          <div class="divider"></div>
+        </li>
+        <li>
+          {% if user.is_authenticated %}
+          <li><a href="#!">Profile - {{user.username}}</a></li>
+          {% else %}
+          <a href="/login/"> Log In </a>
+          {% endif %}
+        </li>
+        <li><a href="/constructor/">Drone Configurator</a></li>
+        <li><a href="/inventory/">Inventory</a></li>
+        <li><a href="/design/">Designing a Drone</a></li>
+        <li>
+          <a href="/cart/" title="Cart">Cart</a>
+        </li>
+        <li><a href="/design/">Contact Us</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <nav>
+    <div class="nav-wrapper brand-blue1 z-depth-2 search">
+      <form>
+        <div class="input-field">
+          <input id="search" type="search" required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+<div id="non-header">
+{% block content %}
+{% endblock %}
+<footer class="page-footer brand-blue1">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Skystric</h5>
+        <p class="grey-text text-lighten-4">We are a small online business that lets you customize nearly every aspect of your drone for racing, photography, or just flying for fun. After customization, we'll give you specs such as top speed and thrust to make sure it fits your needs. We also offer instruction manuals to construct your drone or the option to have it pre-constructed.</p>
+
+
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Main Pages</h5>
+        <ul>
+          <li><a class="white-text" href="#!">Drone Configuration</a></li>
+          <li><a class="white-text" href="#!">Our Inventory</a></li>
+          <li><a class="white-text" href="#!">How to Design a Drone</a></li>
+          <li><a class="white-text" href="#!">Cart</a></li>
+        </ul>
+      </div>
+      <div class="col l3 s12">
+        <h5 class="white-text">Other Links</h5>
+        <ul>
+          <li><a class="white-text" href="#!">Your Account</a></li>
+          <li><a class="white-text" href="#!">Previous Orders</a></li>
+          <li><a class="white-text" href="#!">Returns</a></li>
+          <li><a class="white-text" href="#!">Terms and Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<div class="footer-copyright">
+  <div class="container">
+    <p class="white-text text-lighten-3"> Contact us at support@skystric.com </p>
+    <p class="white-text text-lighten-3"> &copy Skystric Inc., 2019 </p>
+  </div>
+</div>
+</footer>
+
+
+<!--  Scripts-->
+{% load static %}
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="{% static "materialize.js" %}"></script>
+<script src="{% static "init.js" %}"></script>
+<script>
+      (function($) {
+        $(function() {
+          $('.dropdown-trigger').dropdown({
+            inDuration: 300,
+            outDuration: 225,
+            hover: false, // Activate on hover
+            belowOrigin: true, // Displays dropdown below the button
+            alignment: 'left' // Displays dropdown with edge aligned to the left of button
+            }
+          );
+          $('.carousel.carousel-slider').carousel({
+            fullWidth: true,
+            indicators: true
+          });
+        }); // End Document Ready
+      })(jQuery); // End of jQuery name space
+</script>
+{% if messages %}
+     {% for message in messages %}
+       <script>M.toast({html: "{{message}}", classes:'blue rounded', displayLength:2000});</script>
+     {% endfor %}
+ {% endif %}
+  </div>
+</body>
+</html>

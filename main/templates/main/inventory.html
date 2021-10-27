@@ -1,0 +1,222 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+<div class="row container2" id="inv-body">
+  <div class="col s3" id="sortby">
+    <h4> Sort By </h4>
+    <div class="divider"></div>
+      <h5> Category </h5>
+      <form action="#" id="categories">
+        <p>
+          <label for="category1">
+            <input type="checkbox" class="filled-in" id="category1" onclick="sendFilterRequest()"/>
+            <span>Frames</span>
+          </label>
+        </p>
+        <p>
+          <label for="category2">
+            <input type="checkbox" class="filled-in" id="category2" onclick="sendFilterRequest()"/>
+            <span>Electrical</span>
+          </label>
+        </p>
+        <p>
+          <label for="category3">
+            <input type="checkbox" class="filled-in" id="category3" onclick="sendFilterRequest()"/>
+            <span>Motors</span>
+          </label>
+        </p>
+      </form>
+    <div class="divider"></div>
+    <section class="sort-cat">
+      <h5> Price </h5>
+      <form action="#" id="prices">
+        <p>
+          <label for="price1">
+            <input type="checkbox" class="filled-in" id="price1" onclick="sendFilterRequest()"/>
+            <span>$9.99 and under</span>
+          </label>
+        </p>
+        <p>
+          <label for="price2">
+            <input type="checkbox" class="filled-in" id="price2" onclick="sendFilterRequest()"/>
+            <span>$10 - $19.99</span>
+          </label>
+        </p>
+        <p>
+          <label for="price3">
+            <input type="checkbox" class="filled-in" id="price3" onclick="sendFilterRequest()"/>
+            <span>$20 - $29.99</span>
+          </label>
+        </p>
+        <p>
+          <label for="price4">
+            <input type="checkbox" class="filled-in" id="price4" onclick="sendFilterRequest()"/>
+            <span>$30 - $49.99</span>
+          </label>
+        </p>
+        <p>
+          <label for="price5">
+            <input type="checkbox" class="filled-in" id="price5" onclick="sendFilterRequest()"/>
+            <span>$50 - $74.99</span>
+          </label>
+        </p>
+        <p>
+          <label for="price6">
+            <input type="checkbox" class="filled-in" id="price6" onclick="sendFilterRequest()"/>
+            <span>$75 - $99.99</span>
+          </label>
+        </p>
+        <p>
+          <label for="price7">
+            <input type="checkbox" class="filled-in" id="price7" onclick="sendFilterRequest()"/>
+            <span>$100 and over</span>
+          </label>
+        </p>
+      </form>
+    </section>
+    <div class="divider"></div>
+    <section class="sort-cat">
+      <h5> Brands </h5>
+      <form action="#" id="brands">
+        <p>
+          <label for="brands1">
+            <input type="checkbox" class="filled-in" id="brands1" onclick="sendFilterRequest()"/>
+            <span>Skystric Exclusive</span>
+          </label>
+        </p>
+        <p>
+          <label for="brands2">
+            <input type="checkbox" class="filled-in" id="brands2" onclick="sendFilterRequest()"/>
+            <span>Luminier</span>
+          </label>
+        </p>
+        <p>
+          <label for="brands3">
+            <input type="checkbox" class="filled-in" id="brands3" onclick="sendFilterRequest()"/>
+            <span>TommyFPV</span>
+          </label>
+        </p>
+      </form>
+    </section>
+  </div>
+  <div class="col s9" id="inv-items">
+    {% for item in products %}
+    <div class="inv_item_with_divider">
+      <div class="inv-item">
+        <div class="row">
+          <div class="col s4">
+            <a class="link_item img_link_item" href="/longproddesc/{{item.title}}">
+              <img class="inv-img thumbnail_item" src={{item.thumbnail.url}}>
+            </a>
+          </div>
+          <div class="col s6 item-desc">
+            <div class="row">
+              <a class="link_item" href="/longproddesc/{{item.title}}">
+                <h5 class="black-text title_item"> <strong>{{item.title}}</strong> </h5>
+              </a>
+              <div class="divider"></div>
+              <p class="left black-text short_description_item"> {{item.short_description}} </p>
+            </div>
+            <div class="row">
+              <div class="col s6">
+                <button href="/addonetocart/{{item.title}}" class="cart-inv-button waves-effect waves-light btn-small submit"><i class="material-icons right">add_shopping_cart</i>add to cart</button>
+              </div>
+              <div class="col s6">
+                <a href="#"> Save <i class="material-icons tiny">sd_card</i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col s2">
+            <h5 class="red-text right price_item"> ${{item.price}} </h5><br><br>
+            <h5 class="right blue-text avg_review_item"> {{item.avg_review}}/5 stars </h5>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  function sendFilterRequest(){
+    var i = 1;
+    var requestCode = "req-p"
+    while(document.getElementById("price"+i) != null){
+      if(document.getElementById("price"+i).checked == true){
+        requestCode = requestCode + i;
+      }
+      i++;
+    }
+    i = 1;
+    requestCode = requestCode + "c"
+    while(document.getElementById("category"+i) != null){
+      if(document.getElementById("category"+i).checked == true){
+        requestCode = requestCode + i;
+      }
+      i++;
+    }
+    i = 1;
+    requestCode = requestCode + "b"
+    while(document.getElementById("brands"+i) != null){
+      if(document.getElementById("brands"+i).checked == true){
+        requestCode = requestCode + i;
+      }
+      i++;
+    }
+    requestCode = requestCode + "*";
+    const Http = new XMLHttpRequest();
+    const url='./'+requestCode;
+    Http.open("GET",url);
+    Http.send();
+    Http.onreadystatechange=function(){
+      function setDivs(class_name, array_of_response, before_string, after_string){
+        var items = document.getElementsByClassName(class_name);
+        for(var i = 0;i<items.length;i++){
+          items[i].innerHTML = before_string + array_of_response[i] + after_string;
+        }
+      }
+      if(this.readyState==4 && this.status==200){
+        var response = JSON.parse(Http.responseText);
+        setDivs("price_item",response.prices,"$","");
+        setDivs("avg_review_item",response.avg_reviews,"","/5 stars");
+        setDivs("short_description_item",response.short_descriptions,"","");
+        setDivs("title_item",response.titles,"<strong>","</strong>");
+        setDivs("img_link_item",response.thumbnails,"<img class='inv-img thumbnail_item' src=",">")
+        var inv_items = document.getElementsByClassName("inv_item_with_divider");
+        for(var i = 0;i<inv_items.length;i++){
+          if(inv_items[i].innerHTML.includes("undefined")){
+            inv_items[i].style.display = "none";
+          }
+          else{
+            inv_items[i].style.display = "block";
+          }
+        }
+      }
+    }
+  }
+</script>
+
+<!--  <div class="body-grid">
+{% for item in products %}
+
+  <div class="row">
+    <div class="col s12 m6">
+      <a href="/longproddesc/{{item.title}}">
+      <div class="card">
+        <div class="card-image">
+          <img src={{item.thumbnail.url}}>
+          <span class="card-title">{{item.title}} {{item.url}}</span>
+          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="large material-icons">add_shopping_cart</i></a>
+        </div>
+        <div class="card-content">
+          <h2 style="color:red">${{item.price}}</h2>
+          <p>{{item.short_description}}</p>
+        </div>
+      </div>
+      </a>
+    </div>
+  </div>
+{% endfor %}
+</div>-->
+{% endblock %}

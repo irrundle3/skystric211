@@ -1,0 +1,26 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+    <div class="body-grid">
+{% for item in products %}
+
+  <div class="row">
+    <div class="col s12 m6">
+      <a href="/longproddesc/{{item.title}}">
+      <div class="card">
+        <div class="card-image">
+          <img src={{item.thumbnail.url}}>
+          <span class="card-title">{{item.title}} {{item.url}}</span>
+          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="large material-icons">add_shopping_cart</i></a>
+        </div>
+        <div class="card-content">
+          <h2 style="color:red">${{item.price}}</h2>
+          <p>{{item.short_description}}</p>
+        </div>
+      </div>
+      </a>
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+Dev Logs
+---------------
+Skystric - Log 9/21-22/2019 (1) - Ian
+  Home created from modified template
+  Created a template for Inventory
+  Cleaned up the contact us page
+  TODO:
+    Fix inventory/items
+      Style the "Sort By" div
+      Create a filter for Inventory
+      Add pagination to inventory
+      Enable the add to cart buttons in inventory
+      Create a save functionality for items
+      Style up longproddesc Pages, verify that is works, fix avg_review using math
+    Create a drone Configurator
+      Save (un)finished drones and add to cart
+    Designing a drone
+      Create a page system for it. No need to make actual content yet
+    Fix profile system
+      Login with google/facebook
+      Create an account page to change passwords and other settings
+------------------
+Skystric - Log 9/24/2019 (2) - Ian
+  Sorting system nearly finished
+  TODO:
+    Fix inventory/items
+      Finish sorting system
+        Fix the glitch when multiple sorting categories clash, causing only price to be valid. Something's going on in "views.py"
+      Add pagination to inventory
+      Enable the add to cart buttons in inventory
+      Create a save functionality for items
+      Style up longproddesc Pages, verify that is works, fix avg_review using math
+    Create a drone Configurator
+      Save (un)finished drones and add to cart
+    Designing a drone
+      Create a page system for it. No need to make actual content yet
+    Fix profile system
+      Login with google/facebook
+      Create an account page to change passwords and other settings
+-------------------

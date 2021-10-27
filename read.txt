@@ -1,0 +1,69 @@
+DYI DroneGen Website V1.2.1
+
+--------------------
+--- LOGS 7/19/19 ---
+--------------------
+NEW CHANGES
+> First Incorporation of Django Server with HTML5/CSS3
+
+TODO
+> Login/Register
+> Refine Model Structure
+> > Display Items on ORDER tab
+
+--------------------
+--- LOGS 7/21/19 ---
+--------------------
+NEW CHANGES
+> Login/Register Complete
+> Store with individual item pages complete
+> Refined File and Model Structure
+> Added a dummy ReCaptcha
+
+TODO
+> Cart for each user
+> Checkout with dummy PayPal
+> Structure the design/construction pages
+> Submit contact form
+> Register one email each
+> Stylistic Refinement
+> > Fix the Footer
+> > Revamp the Login/Register
+> > What's going on with the home bootstrap carousel
+
+--------------------
+--- LOGS 7/23/19 ---
+--------------------
+NEW CHANGES
+> Q/A and Reviews Added to Products
+> Cart for each user (added only via admin)
+
+TODO
+> Figure out post requests!!
+> Checkout with dummy PayPal
+> Structure the design/construction pages
+> Submit contact form
+> Register one email each
+> Stylistic Refinement
+> > Fix the Footer
+> > Revamp the Login/Register
+> > What's going on with the home bootstrap carousel
+
+--------------------
+--- LOGS 7/24/19 ---
+--------------------
+NEW CHANGES
+> Adding stuff to cart is now possible!
+> Combining item quantities of the same product!
+> Can edit quantity in cart!
+> Added button for deleting item from cart!
+> Register one email/password!
+> Submit contact form!
+> Checkout Price Calculator and dummy page!
+
+TODO
+> Checkout Page Completion - ORDER
+> Structure the design/construction pages
+
+> Stylistic Refinement
+> > Revamp the Login/Register

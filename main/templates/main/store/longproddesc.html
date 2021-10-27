@@ -1,0 +1,55 @@
+{% extends '../header.html' %}
+
+{% block content %}
+<div id=longproddesc-grid>
+  <div class="NewInv longdescgrid">
+    <div class="pricetitle DescTextText">
+        <h1 class="center"> {{product.title}} </h1>
+        <h2 class="center" id="price"> ${{product.price}}</h2>
+        <h2 class="center"> {{product.avg_review}}/5.0 stars </h2>
+        <img class="image-center" src={{product.thumbnail.url}}>
+    </div>
+    <div class="longdescdesc DescTextText">
+      <h2 class="center"> Product Description </h2>
+      <p> {{product.description}}</p>
+    </div>
+  </div>
+  <div class="NewInv QandA">
+    <h2> Q/A </h2>
+    {% for question in questions %}
+    <div class="question-div">
+      <p> Asked by: {{question.published_user}} </p>
+      <p> {{question.question_text}} </p>
+      {% for answer in answers %}
+      {% if answer.applied_question == question %}
+        <div class="answer-div">
+          <p> Answered by: <strong> {{answer.published_user}} </strong></p>
+          <p> {{answer.answer_text}} </p>
+        </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+  <div class = "NewInv Reviews">
+    <h2> Reviews </h2>
+    {% for rev in reviews %}
+    <div class="review-div">
+      <h3> {{rev.review_title}} - {{rev.stars}} stars</h3>
+      {% if rev.purchased %}
+      <p class="review-user-heading"> Review written by <strong>{{rev.published_user}}</strong> on {{rev.date_published}}</p>
+      <p style="color:red"> Verified Purchaser </p>
+      {% endif %}
+      <p> {{rev.review_description}} </p>
+    </div>
+    <br>
+    {% endfor %}
+  </div>
+  <div class="NewInv">
+    <form id="addToCart" style="width:25%; margin: 0 auto" method="post">
+      {% csrf_token %}
+      {{form.as_p}}
+      <button href="/" class="waves-effect waves-light btn-small submit"><i class="material-icons right">add_shopping_cart</i>add to cart</button>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br><br>
+      <h1 class="header center teal-text text-lighten-2">Skystric Drones</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Reliable, high quality, custom drones for all hobbyists</h5>
+      </div>
+      <div class="row center">
+        <a href="/constructor/" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Start Building</a>
+      </div>
+      <br><br>
+
+    </div>
+  </div>
+  {% load static %}
+  <div class="parallax"><img src="{% static "background1.jpg" %}" alt="Unsplashed background img 1"></div>
+</div>
+
+
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 center">
+        <h3><i class="mdi-content-send brown-text"></i></h3>
+        <h4>Featured Products</h4>
+        <div class="carousel carousel-slider center">
+          {% for item in products %}
+          <a href="/longproddesc/{{item.title}}">
+          <div class="carousel-item brand-blue2 white-text" href="#one!">
+            <h2 class="header">{{item.title}}</h2>
+            <div class="card horizontal">
+              <div class="card-image">
+                {% load static %}
+                <img src="{{item.thumbnail.url}}" class="featured">
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <h3 class="red-text price-on-carousel">${{item.price}}</h3>
+                  <p class="black-text">{{item.short_description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="parallax-container valign-wrapper">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <div class="row center">
+        <h5 class="header col s12 light background-text">Don't need a full drone? Search our <a href="/inventory/"> inventory </a> for specific items!</h5>
+      </div>
+    </div>
+  </div>
+  {% load static %}
+  <div class="parallax"><img src="{% static "background2.jpg" %}" alt="Unsplashed background img 2"></div>
+</div>
+
+<div class="container">
+  <div class="section">
+    <!--   Icon Section   -->
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">style</i></h2>
+          <h5 class="center">Fully Custom Frames</h5>
+          <p class="light">While most sites offer pre-made frames, we also offer the option to make your own custom frame while being able to choose from many materials. If drawing your own frame doesn't suit you, we have pre-made frames as well!</p>
+        </div>
+      </div>
+
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">send</i></h2>
+          <h5 class="center">Streamlined Drone Configuration</h5>
+
+          <p class="light">Using our tools, configure the drone that you need for your purposes. We'll give you accurate drone specs after you fully customized your frame, electronics, motors, and more! We offer multiple degrees of customization depending on your experience level or other needs.</p>
+        </div>
+      </div>
+
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">settings</i></h2>
+          <h5 class="center">Easy to work with</h5>
+
+          <p class="light">New to flying? We got you covered. With each kit, we'll send you an instruction manual tailored to you! We can also send you the drone pre-built. If you're unsure how to customize your drone, we have a multitude of pre-configured options.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="parallax-container valign-wrapper">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <div class="row center">
+        <h5 class="header col s12 light">Have any questions or concerns? Email us at support@skystric.com or <a href="/contactus/"> fill out the form here! </a></h5>
+      </div>
+    </div>
+  </div>
+  {% load static %}
+  <div class="parallax"><img src="{% static "background1.jpg" %}" alt="Unsplashed background img 3"></div>
+</div>
+
+{% endblock %}

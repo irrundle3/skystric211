@@ -1,0 +1,35 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+<div class="NewInv">
+  {% for item in cart %}
+  <div class="cart-item">
+    <h3> {{item.number}} x {{item.product.title}}</h3>
+    <h3 style="color:red"> ${{item.product.price}} ea. = <strong>${{item.total}}</strong></h3>
+    <img src={{item.product.thumbnail.url}} style="width:400px">
+    <form action="/cart/{{item.product.title}}/" method="post">
+      {% csrf_token %}
+      {{quantity_edit_form}}
+      <button type="submit" class="btn-floating waves-effect waves-light red"><i class="large material-icons">add_shopping_cart</i></button>
+    </form>
+    <form name="delete_cart_item" method=post action="/deletecartitem/{{item.product.title}}">
+      {% csrf_token %}
+      <input type="hidden" name="supporttype" />
+      {% csrf_token %}
+      <input type="submit" value="Remove this product from cart"</a>
+    </form>
+    <p> {{item.product.short_description}} </p>
+  </div>
+  <br>
+  {% endfor %}
+  <div class="TotalPrice">
+    <h3> Total Cart Price: <strong> ${{total_cart_price}} </strong></h3>
+    <form action="../checkout/" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="supporttype" />
+      <input type="submit" value="Checkout"</a>
+    </form>
+
+  </div>
+</div>
+{% endblock %}
